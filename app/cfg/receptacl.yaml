@@ -1,0 +1,10 @@
+# todo: makefile scaffold
+servicename: "OBS"
+remoteserver:
+  ip: "192.168.1.171"
+  pw: "Triskaphile"
+  port: "4455"
+localpath: "/ws"
+localport: "8765"
+timeout: 1000 #ms
+msgbuffer: 10
