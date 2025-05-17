@@ -6,5 +6,5 @@ remoteserver:
   port: "4455"
 localpath: "/ws"
 localport: "8765"
-timeout: 1000 #ms
+timeout: 100 #ms
 msgbuffer: 10

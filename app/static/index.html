@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RECEPTACL - Demo</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- <link rel="stylesheet" href=""> -->
+		<script src="https://unpkg.com/htmx.org@2.0.4"></script>
+		<script src="https://unpkg.com/htmx-ext-ws@2.0.2" crossorigin="anonymous"></script>
+	</head>
+	<body>
+		<!--[if lt IE 7]>
+			<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+		<![endif]-->
+		<div hx-ext="ws" ws-connect="/ws" id="receptacl">
+			<div id="catchstatus"></div>
+			<div id="catchtext" style="max-width: 90vw; line-break: anywhere;"></div>
+			<div id="catchblock"></div>
+			<form id="sendcmd" ws-send>
+				<input name="hx_cmd"/>
+			</form>
+		</div>
+	</body>
+</html>

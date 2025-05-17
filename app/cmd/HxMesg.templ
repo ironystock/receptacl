@@ -1,0 +1,11 @@
+package main
+
+templ HxText(mesg string, id string, cls string) {
+	<span class={ cls } id={ id } hx-swap-oob="beforeend"><span>{ mesg }</span></span> 
+}
+templ HxBlock(mesg string, id string, cls string) {
+	<div class={ cls } id={ id }><div>{ mesg }</div></div> 
+}
+templ HxRepl(mesg string, id string, cls string) {
+	<span class={ cls } id={ id } hx-swap-oob="innerHTML"><div>{ mesg }</div></span> 
+}

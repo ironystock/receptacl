@@ -1,7 +1,12 @@
 package main
 
 import (
+	"bytes"
+	"context"
 	"fmt"
+	"net/http"
+	"os"
+	"time"
 )
 
 // server-facing ws
@@ -16,10 +21,29 @@ func main() {
 
 	cfg, err := configure()
 	if err != nil {
-		fmt.Println("config issue")
 		panic("No config")
 	}
 	fmt.Println(cfg)
+	s := NewServer(cfg)
+	go func(s *server) {
+
+		for {
+			var tpl bytes.Buffer
+			HxText("henlo", "catchtext", "").Render(context.Background(), &tpl)
+			s.broadcast([]byte(tpl.String()))
+			tpl.Reset()
+			HxBlock("henlo", "catchblock", "").Render(context.Background(), &tpl)
+			s.broadcast([]byte(tpl.String()))
+			tpl.Reset()
+			time.Sleep(1 * time.Second)
+		}
+
+	}(s)
+	err = http.ListenAndServe(":"+s.cfg.LocalPort, &s.mux)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
 
 	// go func() {
 	// 	//Websocket to proxy
